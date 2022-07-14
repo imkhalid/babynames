@@ -18,8 +18,8 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Lif
     private lateinit var appOpenAdManager: AppOpenAdManager
     private var currentActivity: Activity? = null
     private val LOG_TAG="MyApplication"
-    private val AD_UNIT_ID = "ca-app-pub-3940256099942544/3419835294" /*Demo Ad*/
-//    private val AD_UNIT_ID = "ca-app-pub-7238108829340450/4764299330"
+//    private val AD_UNIT_ID = "ca-app-pub-3940256099942544/3419835294" /*Demo Ad*/
+    private val AD_UNIT_ID = "ca-app-pub-7238108829340450/4764299330"
 
     override fun onCreate() {
         super.onCreate()

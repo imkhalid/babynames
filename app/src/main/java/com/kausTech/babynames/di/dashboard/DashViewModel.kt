@@ -46,7 +46,8 @@ class DashViewModel @Inject constructor(private var dataManager: DataManager) : 
                                             NamesDatabase.getDatabase().noteDao().insert(names)
 
                                         }
-                                        PrefUtil.getPrefs().edit().putBoolean("IS_DATA_SAVED", true).apply()
+                                        PrefUtil.getPrefs().edit().putBoolean("IS_DATA_SAVED", true)
+                                            .apply()
                                         callback()
                                     }
                                 }
@@ -74,7 +75,7 @@ class DashViewModel @Inject constructor(private var dataManager: DataManager) : 
         }
     }
 
-    fun getNamesByRegion(region:String){
+    fun getNamesByRegion(region: String) {
         viewModelScope.launch {
             namesList = NamesDatabase.getDatabase().noteDao().getNamesByRegion(region)
         }
@@ -86,7 +87,7 @@ class DashViewModel @Inject constructor(private var dataManager: DataManager) : 
         }
     }
 
-    fun writeRegions(callback:()->Unit) {
+    fun writeRegions(callback: () -> Unit) {
         viewModelScope.launch {
             try {
                 FirebaseDB(
@@ -95,7 +96,7 @@ class DashViewModel @Inject constructor(private var dataManager: DataManager) : 
                 ).getAllList("origin_name", object :
                     FirebaseDB.GetAllListListener<Regions> {
                     override fun onSuccess(list: List<Regions>?) {
-                        list?.let {regions->
+                        list?.let { regions ->
                             viewModelScope.launch {
                                 NamesDatabase.getDatabase().regionDao().insert(regions)
 
@@ -118,5 +119,16 @@ class DashViewModel @Inject constructor(private var dataManager: DataManager) : 
             }
         }
 
+    }
+
+    fun getNamesByAlphabet(charecter: String, region: String) {
+        viewModelScope.launch {
+            if (region.isEmpty())
+                namesList = NamesDatabase.getDatabase().noteDao()
+                    .getNamesByAlphabet(character = "$charecter%")
+            else
+                namesList = NamesDatabase.getDatabase().noteDao()
+                    .getNamesByAlphabet(character = "$charecter%",region)
+        }
     }
 }

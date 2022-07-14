@@ -100,8 +100,16 @@ fun Dashboard(
                 items(items = categories) { name ->
                     MyCategory(
                         name,
-                        selected.value,
-                        onItemSelected = { selected.value = it })
+                        selected,
+                        onItemSelected = {
+                            if (selected.value == it) {
+                                selected.value = ""
+                                dashboardViewModel.getNames()
+                            }else {
+                                selected.value = it
+                                dashboardViewModel.getNamesByAlphabet(selected.value,showRegionButton)
+                            }
+                        })
                 }
             }
             AnimatedVisibility(visible = showRegionButton.isEmpty()) {
@@ -210,7 +218,11 @@ val family = FontFamily(
 @ExperimentalMaterial3Api
 private
 @Composable
-fun MyCategory(name: String, currentSelected: String, onItemSelected: (name: String) -> Unit) {
+fun MyCategory(
+    name: String,
+    currentSelected: MutableState<String>,
+    onItemSelected: (name: String) -> Unit
+) {
 
 
     Card(
@@ -224,7 +236,7 @@ fun MyCategory(name: String, currentSelected: String, onItemSelected: (name: Str
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .background(
-                    color = if (currentSelected == name) MainScreen.colorSchema.primary else Color.Transparent
+                    color = if (currentSelected.value == name) MainScreen.colorSchema.primary else Color.Transparent
                 )
                 .size(50.dp)
         ) {

@@ -16,6 +16,12 @@ abstract class NamesDao :BaseDao<Names>() {
     @Query("SELECT DISTINCT region FROM names ORDER BY region ASC")
     abstract suspend fun getRegions(): List<String>
 
+    @Query("SELECT * FROM names WHERE name LIKE :character ORDER BY name ASC")
+    abstract suspend fun getNamesByAlphabet(character:String): List<Names>
+
+    @Query("SELECT * FROM names WHERE region=:region and name LIKE :character ORDER BY name ASC")
+    abstract suspend fun getNamesByAlphabet(character:String,region: String): List<Names>
+
     @Query("SELECT * FROM names Where region=:region")
     abstract suspend fun getNamesByRegion(region:String): List<Names>
 //
