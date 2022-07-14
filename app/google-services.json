@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352561757233",
+    "project_id": "babynames-db509",
+    "storage_bucket": "babynames-db509.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352561757233:android:9726e8e13d657298db6910",
+        "android_client_info": {
+          "package_name": "com.kausTech.babynames"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352561757233-vc0hfbgth1e2met9np8gthqj3dl4ha0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnMBi0tv0YFJxR-uIbgnreJda6U7V814k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352561757233-vc0hfbgth1e2met9np8gthqj3dl4ha0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
